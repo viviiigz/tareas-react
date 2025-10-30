@@ -1,6 +1,6 @@
 import { useForm } from '../hooks/UseForm.js';
 
-export const Login = ({ onLogin }) => {
+export const Login = ({ onLogin, user, onLogout }) => { //los props 
   const { formValues, handleChange, handleReset } = useForm({
     email: '',
     password: ''
@@ -18,7 +18,12 @@ export const Login = ({ onLogin }) => {
 
   return (
     <div>
-      <h2>Login</h2>
+        {user && (
+        <div>
+          <h1>¡Hola de nuevo {user}!</h1>
+        </div>
+      )}
+
       <form onSubmit={handleSubmit}>
         <div>
           <label>Email:</label>
@@ -40,8 +45,23 @@ export const Login = ({ onLogin }) => {
             required
           />
         </div>
-        <button type="submit">Login</button>
+           <div style={{ marginTop: '20px' }}>
+          <button type="submit">Login</button>
+          
+          {/* logout solo visible cuando hay usuario */}
+          {user && (
+            <button 
+              type="button" 
+              onClick={onLogout}
+              style={{marginTop: '20px'}}
+            >
+              Logout
+            </button>
+          )}
+        </div>
       </form>
+
+   
     </div>
   );
 };

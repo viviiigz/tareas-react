@@ -8,16 +8,16 @@ function App() {
   //controlo que pantalla se debe mostrar
   const [mostrarTarea, setMostrarTarea] = useState(''); 
   //estado para el usuario logueado, guardo el email
-  const [usuario, setUsuario] = useState();
+  const [user, setUser] = useState('');
 
   //funcion para el login: reecibo el email del componente de login y lo guardo
     const handleLogin = (email) => {
-    setUsuario(email);
+    setUser(email);
   };
 
   //funcion para el logout: limpio el estado de usuario
     const handleLogout = () => {
-    setUsuario('');
+    setUser('');
   };
 //el logout aparece despues de hacer el login y por eso va en app
 
@@ -41,18 +41,8 @@ function App() {
       ) : (
         // si no formularios
         <div>
-          {/* Si hay usuario logeado, mostrar bienvenida */}
-          {usuario && (
-            <div style={{ marginBottom: '20px' }}>
-              <h1>¡Hola de nuevo {usuario}!</h1>
-                <button onClick={handleLogout}>Logout</button>
-
-            </div>
-          )}
-          
           {/* formularios */}
-          <Login onLogin={handleLogin} />
-
+          <Login onLogin={handleLogin} user={user} onLogout={handleLogout} />
           <Register />
         </div>
       )}
