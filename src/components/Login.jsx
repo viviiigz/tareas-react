@@ -1,21 +1,22 @@
 import { useForm } from '../hooks/UseForm.js';
 
 export const Login = ({ onLogin, user, onLogout }) => { //los props 
-  const { formValues, handleChange, handleReset } = useForm({
+  const { formValues, handleChange, handleReset} = useForm({
     email: '',
     password: ''
   });
 
+  
+   //el profe lo puso en useForm
   const handleSubmit = (e) => {
-    e.preventDefault();
-    
+    e.preventDefault(); 
+
     if (onLogin) {
       onLogin(formValues.email);
     }
-    
+
     handleReset();
   };
-
   return (
     <div>
         {user && (
